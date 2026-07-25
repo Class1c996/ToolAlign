@@ -1,0 +1,10 @@
+{
+  "seed": 7,
+  "count": 1200,
+  "splits": {
+    "train": 840,
+    "dev": 120,
+    "test_seen": 120,
+    "test_unseen": 120
+  }
+}

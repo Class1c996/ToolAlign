@@ -12,7 +12,13 @@ models/**/*.pth
 reports/runs/
 reports/*.jsonl
 data/raw/
-data/processed/
+data/processed/*
+!data/processed/test_seen.jsonl
+!data/processed/test_unseen.jsonl
+!data/processed/challenge_v1.jsonl
+!data/processed/challenge_critical_v2.jsonl
+!data/processed/challenge_state_v3.jsonl
+!data/processed/manifest.json
 logs/
 docs/*.md
 *.sqlite3
