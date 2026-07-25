@@ -1,0 +1,4 @@
+task_manifest: "data/processed"
+max_steps: 5
+seed: 7
+output_dir: "reports"

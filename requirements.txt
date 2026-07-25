@@ -1,0 +1,16 @@
+# Runtime baseline (Python 3.11+, CUDA build selected by the host)
+torch==2.7.1
+transformers==4.51.3
+trl==0.17.0
+peft==0.15.2
+bitsandbytes==0.45.5
+datasets==3.5.0
+accelerate==1.6.0
+pyyaml==6.0.2
+
+# Evaluation and reporting
+pandas==2.2.3
+scikit-learn==1.6.1
+matplotlib==3.10.1
+
+# Optional integrations are intentionally not required for W0 smoke tests.

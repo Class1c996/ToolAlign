@@ -1,0 +1,18 @@
+base_model: "models/Qwen3-1.7B"
+adapter: "checkpoints/sft_critical_v2"
+load_in_4bit: true
+bnb_4bit_quant_type: "nf4"
+bnb_4bit_use_double_quant: true
+compute_dtype: "bfloat16"
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+micro_batch_size: 1
+gradient_accumulation_steps: 8
+gradient_checkpointing: true
+learning_rate: 0.000003
+max_seq_length: 1536
+max_steps: 120
+output_dir: "checkpoints/sft_state_v3"
+train_file: "data/processed/state_train_v1.jsonl"

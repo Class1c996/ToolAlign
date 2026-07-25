@@ -1,0 +1,16 @@
+base_model: "models/Qwen3-1.7B"
+adapter: "checkpoints/sft_next_action_full"
+train_file: "data/processed/interactive_train_v1.jsonl"
+max_gold_calls: 2
+num_generations: 2
+batch_tasks: 2
+max_turns: 4
+max_new_tokens: 96
+temperature: 0.9
+top_p: 0.95
+zero_variance_fallback: true
+learning_rate: 0.00001
+max_steps: 20
+smoke_steps: 2
+seed: 37
+output_dir: "checkpoints/grpo_interactive_v1"

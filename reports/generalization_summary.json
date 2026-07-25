@@ -1,0 +1,100 @@
+{
+  "challenge_v1": {
+    "base": {
+      "count": 120,
+      "end_to_end_success_rate": 0.5583,
+      "false_success_rate": 0.0,
+      "format_legal_rate": 0.975,
+      "tool_success_rate": 0.9167
+    },
+    "critical_sft_v2": {
+      "count": 120,
+      "end_to_end_success_rate": 0.8333,
+      "false_success_rate": 0.1,
+      "format_legal_rate": 1.0,
+      "tool_success_rate": 0.9833
+    },
+    "interactive_grpo_multitask_v2": {
+      "count": 120,
+      "end_to_end_success_rate": 0.7417,
+      "false_success_rate": 0.0,
+      "format_legal_rate": 0.9833,
+      "tool_success_rate": 1.0
+    },
+    "interactive_grpo_v2": {
+      "count": 120,
+      "end_to_end_success_rate": 0.5583,
+      "false_success_rate": 0.4333,
+      "format_legal_rate": 1.0,
+      "tool_success_rate": 0.8417
+    },
+    "multitask_state_sft_v5": {
+      "count": 120,
+      "end_to_end_success_rate": 0.7417,
+      "false_success_rate": 0.0,
+      "format_legal_rate": 0.9917,
+      "tool_success_rate": 1.0
+    },
+    "sft": {
+      "count": 120,
+      "end_to_end_success_rate": 0.4917,
+      "false_success_rate": 0.5,
+      "format_legal_rate": 1.0,
+      "tool_success_rate": 0.8333
+    }
+  },
+  "conclusion": "The multitask state SFT V5 is the current best model: it improves over the base model on challenge_v1 and state/value holdout while retaining zero false-success rate. The small interactive GRPO run preserves task success but does not improve it and slightly lowers broad JSON legality, so it is retained as a negative ablation rather than the selected checkpoint.",
+  "critical_wording_holdout": {
+    "critical_sft_v2": {
+      "count": 20,
+      "end_to_end_success_rate": 0.2,
+      "false_success_rate": 0.4,
+      "format_legal_rate": 1.0,
+      "tool_success_rate": 1.0
+    },
+    "multitask_state_sft_v5": {
+      "count": 20,
+      "end_to_end_success_rate": 0.7,
+      "false_success_rate": 0.0,
+      "format_legal_rate": 0.95,
+      "tool_success_rate": 1.0
+    },
+    "targeted_sft_v1": {
+      "count": 20,
+      "end_to_end_success_rate": 0.05,
+      "false_success_rate": 0.6,
+      "format_legal_rate": 1.0,
+      "tool_success_rate": 0.95
+    }
+  },
+  "state_value_holdout": {
+    "base": {
+      "count": 20,
+      "end_to_end_success_rate": 0.45,
+      "false_success_rate": 0.0,
+      "format_legal_rate": 0.9,
+      "tool_success_rate": 1.0
+    },
+    "critical_sft_v2": {
+      "count": 20,
+      "end_to_end_success_rate": 0.35,
+      "false_success_rate": 0.4,
+      "format_legal_rate": 1.0,
+      "tool_success_rate": 1.0
+    },
+    "interactive_grpo_multitask_v2": {
+      "count": 20,
+      "end_to_end_success_rate": 0.6,
+      "false_success_rate": 0.0,
+      "format_legal_rate": 1.0,
+      "tool_success_rate": 1.0
+    },
+    "multitask_state_sft_v5": {
+      "count": 20,
+      "end_to_end_success_rate": 0.6,
+      "false_success_rate": 0.0,
+      "format_legal_rate": 1.0,
+      "tool_success_rate": 1.0
+    }
+  }
+}

@@ -1,0 +1,605 @@
+{
+  "benchmark": "challenge_v1",
+  "models": {
+    "base": {
+      "average_calls": 0.975,
+      "by_template": {
+        "calendar_cancel": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "calendar_create_after_search": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 0.0
+        },
+        "calendar_reschedule": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 0.0
+        },
+        "orders_cancel_paid": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 0.0
+        },
+        "orders_do_not_cancel_shipped": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 0.7
+        },
+        "orders_missing_identifier": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 0.1
+        },
+        "orders_return_damaged": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 0.0
+        },
+        "policy_no_tool": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 0.9
+        },
+        "travel_hotel_search": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "travel_search_cheapest": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "travel_search_then_book": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "travel_weather": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        }
+      },
+      "count": 120,
+      "end_to_end_success_rate": 0.5583,
+      "failure_modes": {
+        "plan_mismatch_extra_or_missing_call": 43,
+        "tool_execution_error": 10
+      },
+      "false_success_rate": 0.0,
+      "format_legal_rate": 0.975,
+      "tool_success_rate": 0.9167
+    },
+    "critical_sft_v2": {
+      "average_calls": 1.0333,
+      "by_template": {
+        "calendar_cancel": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "calendar_create_after_search": {
+          "count": 10,
+          "false_success_rate": 0.2,
+          "success_rate": 0.8
+        },
+        "calendar_reschedule": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "orders_cancel_paid": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 0.2
+        },
+        "orders_do_not_cancel_shipped": {
+          "count": 10,
+          "false_success_rate": 0.2,
+          "success_rate": 0.8
+        },
+        "orders_missing_identifier": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "orders_return_damaged": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "policy_no_tool": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "travel_hotel_search": {
+          "count": 10,
+          "false_success_rate": 0.8,
+          "success_rate": 0.2
+        },
+        "travel_search_cheapest": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "travel_search_then_book": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "travel_weather": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        }
+      },
+      "count": 120,
+      "end_to_end_success_rate": 0.8333,
+      "failure_modes": {
+        "plan_mismatch_extra_or_missing_call": 16,
+        "tool_execution_error": 2,
+        "wrong_final_answer": 2
+      },
+      "false_success_rate": 0.1,
+      "format_legal_rate": 1.0,
+      "tool_success_rate": 0.9833
+    },
+    "interactive_grpo": {
+      "average_calls": 1.375,
+      "by_template": {
+        "calendar_cancel": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "calendar_create_after_search": {
+          "count": 10,
+          "false_success_rate": 0.3,
+          "success_rate": 0.7
+        },
+        "calendar_reschedule": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "orders_cancel_paid": {
+          "count": 10,
+          "false_success_rate": 0.4,
+          "success_rate": 0.6
+        },
+        "orders_do_not_cancel_shipped": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "orders_missing_identifier": {
+          "count": 10,
+          "false_success_rate": 0.2,
+          "success_rate": 0.8
+        },
+        "orders_return_damaged": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "policy_no_tool": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 0.9
+        },
+        "travel_hotel_search": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "travel_search_cheapest": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "travel_search_then_book": {
+          "count": 10,
+          "false_success_rate": 0.6,
+          "success_rate": 0.4
+        },
+        "travel_weather": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        }
+      },
+      "count": 120,
+      "end_to_end_success_rate": 0.5333,
+      "failure_modes": {
+        "plan_mismatch_extra_or_missing_call": 33,
+        "tool_execution_error": 17,
+        "wrong_final_answer": 6
+      },
+      "false_success_rate": 0.4583,
+      "format_legal_rate": 1.0,
+      "tool_success_rate": 0.8583
+    },
+    "interactive_grpo_v2": {
+      "average_calls": 1.4333,
+      "by_template": {
+        "calendar_cancel": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "calendar_create_after_search": {
+          "count": 10,
+          "false_success_rate": 0.2,
+          "success_rate": 0.8
+        },
+        "calendar_reschedule": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "orders_cancel_paid": {
+          "count": 10,
+          "false_success_rate": 0.3,
+          "success_rate": 0.7
+        },
+        "orders_do_not_cancel_shipped": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "orders_missing_identifier": {
+          "count": 10,
+          "false_success_rate": 0.2,
+          "success_rate": 0.8
+        },
+        "orders_return_damaged": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "policy_no_tool": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 0.9
+        },
+        "travel_hotel_search": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "travel_search_cheapest": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "travel_search_then_book": {
+          "count": 10,
+          "false_success_rate": 0.5,
+          "success_rate": 0.5
+        },
+        "travel_weather": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        }
+      },
+      "count": 120,
+      "end_to_end_success_rate": 0.5583,
+      "failure_modes": {
+        "plan_mismatch_extra_or_missing_call": 31,
+        "tool_execution_error": 19,
+        "wrong_final_answer": 3
+      },
+      "false_success_rate": 0.4333,
+      "format_legal_rate": 1.0,
+      "tool_success_rate": 0.8417
+    },
+    "sft": {
+      "average_calls": 1.2667,
+      "by_template": {
+        "calendar_cancel": {
+          "count": 10,
+          "false_success_rate": 0.2,
+          "success_rate": 0.8
+        },
+        "calendar_create_after_search": {
+          "count": 10,
+          "false_success_rate": 0.6,
+          "success_rate": 0.4
+        },
+        "calendar_reschedule": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "orders_cancel_paid": {
+          "count": 10,
+          "false_success_rate": 0.3,
+          "success_rate": 0.7
+        },
+        "orders_do_not_cancel_shipped": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "orders_missing_identifier": {
+          "count": 10,
+          "false_success_rate": 0.2,
+          "success_rate": 0.8
+        },
+        "orders_return_damaged": {
+          "count": 10,
+          "false_success_rate": 0.1,
+          "success_rate": 0.9
+        },
+        "policy_no_tool": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 0.9
+        },
+        "travel_hotel_search": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "travel_search_cheapest": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "travel_search_then_book": {
+          "count": 10,
+          "false_success_rate": 0.6,
+          "success_rate": 0.4
+        },
+        "travel_weather": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        }
+      },
+      "count": 120,
+      "end_to_end_success_rate": 0.4917,
+      "failure_modes": {
+        "plan_mismatch_extra_or_missing_call": 38,
+        "tool_execution_error": 20,
+        "wrong_final_answer": 3
+      },
+      "false_success_rate": 0.5,
+      "format_legal_rate": 1.0,
+      "tool_success_rate": 0.8333
+    },
+    "shaped_grpo": {
+      "average_calls": 1.2667,
+      "by_template": {
+        "calendar_cancel": {
+          "count": 10,
+          "false_success_rate": 0.2,
+          "success_rate": 0.8
+        },
+        "calendar_create_after_search": {
+          "count": 10,
+          "false_success_rate": 0.6,
+          "success_rate": 0.4
+        },
+        "calendar_reschedule": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "orders_cancel_paid": {
+          "count": 10,
+          "false_success_rate": 0.3,
+          "success_rate": 0.7
+        },
+        "orders_do_not_cancel_shipped": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "orders_missing_identifier": {
+          "count": 10,
+          "false_success_rate": 0.2,
+          "success_rate": 0.8
+        },
+        "orders_return_damaged": {
+          "count": 10,
+          "false_success_rate": 0.1,
+          "success_rate": 0.9
+        },
+        "policy_no_tool": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 0.9
+        },
+        "travel_hotel_search": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "travel_search_cheapest": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "travel_search_then_book": {
+          "count": 10,
+          "false_success_rate": 0.6,
+          "success_rate": 0.4
+        },
+        "travel_weather": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        }
+      },
+      "count": 120,
+      "end_to_end_success_rate": 0.4917,
+      "failure_modes": {
+        "plan_mismatch_extra_or_missing_call": 38,
+        "tool_execution_error": 20,
+        "wrong_final_answer": 3
+      },
+      "false_success_rate": 0.5,
+      "format_legal_rate": 1.0,
+      "tool_success_rate": 0.8333
+    },
+    "targeted_sft_v1": {
+      "average_calls": 1.2083,
+      "by_template": {
+        "calendar_cancel": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "calendar_create_after_search": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "calendar_reschedule": {
+          "count": 10,
+          "false_success_rate": 0.9,
+          "success_rate": 0.1
+        },
+        "orders_cancel_paid": {
+          "count": 10,
+          "false_success_rate": 0.2,
+          "success_rate": 0.8
+        },
+        "orders_do_not_cancel_shipped": {
+          "count": 10,
+          "false_success_rate": 0.7,
+          "success_rate": 0.3
+        },
+        "orders_missing_identifier": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "orders_return_damaged": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "policy_no_tool": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "travel_hotel_search": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "travel_search_cheapest": {
+          "count": 10,
+          "false_success_rate": 0.5,
+          "success_rate": 0.5
+        },
+        "travel_search_then_book": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        },
+        "travel_weather": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        }
+      },
+      "count": 120,
+      "end_to_end_success_rate": 0.725,
+      "failure_modes": {
+        "plan_mismatch_extra_or_missing_call": 17,
+        "tool_execution_error": 9,
+        "wrong_final_answer": 7
+      },
+      "false_success_rate": 0.275,
+      "format_legal_rate": 1.0,
+      "tool_success_rate": 0.925
+    },
+    "terminal_grpo": {
+      "average_calls": 1.2667,
+      "by_template": {
+        "calendar_cancel": {
+          "count": 10,
+          "false_success_rate": 0.2,
+          "success_rate": 0.8
+        },
+        "calendar_create_after_search": {
+          "count": 10,
+          "false_success_rate": 0.6,
+          "success_rate": 0.4
+        },
+        "calendar_reschedule": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "orders_cancel_paid": {
+          "count": 10,
+          "false_success_rate": 0.3,
+          "success_rate": 0.7
+        },
+        "orders_do_not_cancel_shipped": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "orders_missing_identifier": {
+          "count": 10,
+          "false_success_rate": 0.2,
+          "success_rate": 0.8
+        },
+        "orders_return_damaged": {
+          "count": 10,
+          "false_success_rate": 0.1,
+          "success_rate": 0.9
+        },
+        "policy_no_tool": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 0.9
+        },
+        "travel_hotel_search": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "travel_search_cheapest": {
+          "count": 10,
+          "false_success_rate": 1.0,
+          "success_rate": 0.0
+        },
+        "travel_search_then_book": {
+          "count": 10,
+          "false_success_rate": 0.6,
+          "success_rate": 0.4
+        },
+        "travel_weather": {
+          "count": 10,
+          "false_success_rate": 0.0,
+          "success_rate": 1.0
+        }
+      },
+      "count": 120,
+      "end_to_end_success_rate": 0.4917,
+      "failure_modes": {
+        "plan_mismatch_extra_or_missing_call": 38,
+        "tool_execution_error": 20,
+        "wrong_final_answer": 3
+      },
+      "false_success_rate": 0.5,
+      "format_legal_rate": 1.0,
+      "tool_success_rate": 0.8333
+    }
+  },
+  "winner_by_success": "critical_sft_v2"
+}

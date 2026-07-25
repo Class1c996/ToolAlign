@@ -1,0 +1,17 @@
+base_model: "models/Qwen3-1.7B"
+load_in_4bit: true
+bnb_4bit_quant_type: "nf4"
+bnb_4bit_use_double_quant: true
+compute_dtype: "bfloat16"
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+micro_batch_size: 1
+gradient_accumulation_steps: 1
+gradient_checkpointing: true
+learning_rate: 0.0001
+max_seq_length: 1024
+max_steps: 2
+output_dir: "checkpoints/sft_chat_smoke"
+train_file: "data/processed/train.jsonl"

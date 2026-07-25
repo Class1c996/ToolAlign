@@ -1,0 +1,76 @@
+{
+  "rows": [
+    {
+      "name": "deterministic_noop",
+      "status": "measured",
+      "metrics": {
+        "count": 120,
+        "format_legal_rate": 1.0,
+        "tool_success_rate": 1.0,
+        "parameter_success_rate": 1.0,
+        "end_to_end_success_rate": 0.3333,
+        "hallucinated_tool_rate": 0.0,
+        "false_success_rate": 0.0,
+        "average_calls": 0.0,
+        "by_split": {
+          "test_seen": {
+            "count": 120,
+            "format_legal_rate": 1.0,
+            "tool_success_rate": 1.0,
+            "parameter_success_rate": 1.0,
+            "end_to_end_success_rate": 0.3333,
+            "hallucinated_tool_rate": 0.0,
+            "false_success_rate": 0.0,
+            "average_calls": 0.0
+          }
+        }
+      }
+    },
+    {
+      "name": "environment_oracle",
+      "status": "measured",
+      "metrics": {
+        "count": 120,
+        "format_legal_rate": 1.0,
+        "tool_success_rate": 1.0,
+        "parameter_success_rate": 1.0,
+        "end_to_end_success_rate": 1.0,
+        "hallucinated_tool_rate": 0.0,
+        "false_success_rate": 0.0,
+        "average_calls": 1.3333,
+        "by_split": {
+          "test_seen": {
+            "count": 120,
+            "format_legal_rate": 1.0,
+            "tool_success_rate": 1.0,
+            "parameter_success_rate": 1.0,
+            "end_to_end_success_rate": 1.0,
+            "hallucinated_tool_rate": 0.0,
+            "false_success_rate": 0.0,
+            "average_calls": 1.3333
+          }
+        }
+      }
+    },
+    {
+      "name": "Base",
+      "status": "pending",
+      "reason": "model weights and training dependencies not available"
+    },
+    {
+      "name": "SFT",
+      "status": "pending",
+      "reason": "model weights and training dependencies not available"
+    },
+    {
+      "name": "SFT + GRPO terminal-only",
+      "status": "pending",
+      "reason": "model weights and training dependencies not available"
+    },
+    {
+      "name": "SFT + GRPO shaped reward",
+      "status": "pending",
+      "reason": "model weights and training dependencies not available"
+    }
+  ]
+}

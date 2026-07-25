@@ -1,0 +1,15 @@
+base_model: "models/Qwen3-1.7B"
+adapter: "checkpoints/sft_multitask_state_v5"
+train_file: "data/processed/multitask_state_mix_v5.jsonl"
+output_dir: "checkpoints/grpo_interactive_multitask_v2_small"
+seed: 73
+learning_rate: 0.000001
+max_steps: 10
+batch_tasks: 1
+num_generations: 2
+max_gold_calls: 2
+max_turns: 3
+max_new_tokens: 64
+temperature: 0.8
+top_p: 0.95
+zero_variance_fallback: true

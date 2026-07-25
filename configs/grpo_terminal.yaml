@@ -1,0 +1,11 @@
+base_model: "models/Qwen3-1.7B"
+adapter: "checkpoints/sft"
+reward: "terminal_only"
+num_generations: 2
+per_device_train_batch_size: 2
+max_completion_length: 192
+beta: 0
+use_vllm: false
+max_steps: 100
+output_dir: "checkpoints/grpo_terminal"
+data_dir: "data/processed"

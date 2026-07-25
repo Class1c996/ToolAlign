@@ -1,0 +1,442 @@
+{
+  "task_id": "standard-episode",
+  "seed": 7,
+  "snapshot": {
+    "orders": [
+      {
+        "order_id": "O-1001",
+        "status": "paid",
+        "total": 129.0,
+        "items": [
+          "keyboard"
+        ]
+      },
+      {
+        "order_id": "O-1002",
+        "status": "shipped",
+        "total": 59.0,
+        "items": [
+          "mouse"
+        ]
+      },
+      {
+        "order_id": "O-1003",
+        "status": "delivered",
+        "total": 249.0,
+        "items": [
+          "monitor"
+        ]
+      }
+    ],
+    "returns": [],
+    "refunds": [],
+    "events": [
+      {
+        "event_id": "E-2001",
+        "title": "team sync",
+        "date": "2026-07-21",
+        "start_time": "09:00",
+        "end_time": "10:00"
+      },
+      {
+        "event_id": "E-2002",
+        "title": "focus block",
+        "date": "2026-07-21",
+        "start_time": "13:00",
+        "end_time": "14:00"
+      }
+    ],
+    "flights": [
+      {
+        "flight_id": "F-3001",
+        "origin": "SHA",
+        "destination": "HND",
+        "date": "2026-08-01",
+        "price": 1800
+      },
+      {
+        "flight_id": "F-3002",
+        "origin": "SHA",
+        "destination": "HND",
+        "date": "2026-08-01",
+        "price": 2200
+      },
+      {
+        "flight_id": "F-3003",
+        "origin": "PEK",
+        "destination": "LAX",
+        "date": "2026-08-02",
+        "price": 4900
+      }
+    ],
+    "hotels": [
+      {
+        "hotel_id": "H-4001",
+        "city": "Tokyo",
+        "name": "Kanda Inn",
+        "nightly_price": 800
+      },
+      {
+        "hotel_id": "H-4002",
+        "city": "Tokyo",
+        "name": "Bay Hotel",
+        "nightly_price": 1200
+      }
+    ],
+    "bookings": [
+      {
+        "booking_id": "B-5001",
+        "flight_id": "F-3001",
+        "passenger_name": "Lin",
+        "status": "confirmed"
+      }
+    ],
+    "weather": {
+      "Tokyo": {
+        "2026-08-01": {
+          "condition": "sunny",
+          "temperature_c": 28
+        }
+      }
+    },
+    "next_ids": {
+      "return": 1,
+      "event": 3,
+      "booking": 2
+    }
+  },
+  "tools": [
+    {
+      "name": "cancel_booking",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "booking_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "booking_id"
+        ],
+        "additionalProperties": false
+      },
+      "side_effects": "mutates_episode_state"
+    },
+    {
+      "name": "cancel_event",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "event_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "event_id"
+        ],
+        "additionalProperties": false
+      },
+      "side_effects": "mutates_episode_state"
+    },
+    {
+      "name": "cancel_order",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "order_id"
+        ],
+        "additionalProperties": false
+      },
+      "side_effects": "mutates_episode_state"
+    },
+    {
+      "name": "check_refund",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "order_id"
+        ],
+        "additionalProperties": false
+      },
+      "side_effects": "read_only"
+    },
+    {
+      "name": "create_booking",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "flight_id": {
+            "type": "string"
+          },
+          "passenger_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "flight_id",
+          "passenger_name"
+        ],
+        "additionalProperties": false
+      },
+      "side_effects": "mutates_episode_state"
+    },
+    {
+      "name": "create_event",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "end_time": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "date",
+          "start_time",
+          "end_time"
+        ],
+        "additionalProperties": false
+      },
+      "side_effects": "mutates_episode_state"
+    },
+    {
+      "name": "create_return",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "damaged",
+              "unwanted",
+              "wrong_item"
+            ]
+          }
+        },
+        "required": [
+          "order_id",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "side_effects": "mutates_episode_state"
+    },
+    {
+      "name": "find_free_slots",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "duration_minutes": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "date",
+          "duration_minutes"
+        ],
+        "additionalProperties": false
+      },
+      "side_effects": "read_only"
+    },
+    {
+      "name": "get_booking",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "booking_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "booking_id"
+        ],
+        "additionalProperties": false
+      },
+      "side_effects": "read_only"
+    },
+    {
+      "name": "get_order",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "order_id"
+        ],
+        "additionalProperties": false
+      },
+      "side_effects": "read_only"
+    },
+    {
+      "name": "get_weather",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "city",
+          "date"
+        ],
+        "additionalProperties": false
+      },
+      "side_effects": "read_only"
+    },
+    {
+      "name": "list_events",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "side_effects": "read_only"
+    },
+    {
+      "name": "search_flights",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "origin",
+          "destination",
+          "date"
+        ],
+        "additionalProperties": false
+      },
+      "side_effects": "read_only"
+    },
+    {
+      "name": "search_hotels",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string"
+          },
+          "check_in": {
+            "type": "string"
+          },
+          "check_out": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "city",
+          "check_in",
+          "check_out"
+        ],
+        "additionalProperties": false
+      },
+      "side_effects": "read_only"
+    },
+    {
+      "name": "search_orders",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "paid",
+              "shipped",
+              "delivered",
+              "cancelled"
+            ]
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "side_effects": "read_only"
+    },
+    {
+      "name": "update_event",
+      "version": "1.0.0",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "event_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "end_time": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "event_id"
+        ],
+        "additionalProperties": false
+      },
+      "side_effects": "mutates_episode_state"
+    }
+  ]
+}
