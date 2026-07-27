@@ -15,6 +15,7 @@ sys.path.insert(0, str(ROOT))
 from envs import build_standard_environment, parse_action  # noqa: E402
 from eval.metrics import summarize, write_csv  # noqa: E402
 from rewards import calculate_reward  # noqa: E402
+from scripts.task_suite import load_tasks  # noqa: E402
 
 
 def clean_generation(text: str) -> str:
@@ -113,7 +114,8 @@ def run_task(model: Any, tokenizer: Any, task: dict[str, Any], manifest: list[di
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--checkpoint", default="", help="LoRA adapter path; omit for the base model")
-    parser.add_argument("--input", default="data/processed/test_seen.jsonl")
+    parser.add_argument("--suite", default="public_smoke", help="Named suite in data/suites.json.")
+    parser.add_argument("--input", default="", help="Explicit JSONL path; mutually exclusive with --suite.")
     parser.add_argument("--output", required=True)
     parser.add_argument("--csv-output", default="")
     parser.add_argument("--limit", type=int, default=0)
@@ -132,7 +134,7 @@ def main() -> int:
         model = PeftModel.from_pretrained(model, ROOT / args.checkpoint, is_trainable=False)
     model.eval()
     _, executor = build_standard_environment()
-    tasks = [json.loads(line) for line in (ROOT / args.input).read_text(encoding="utf-8").splitlines() if line.strip()]
+    tasks, paths = load_tasks(suite=None if args.input else args.suite, input_path=args.input or None)
     if args.limit:
         tasks = tasks[: args.limit]
     rows = [run_task(model, tokenizer, task, executor.registry.manifest(), args.max_turns, args.max_new_tokens) for task in tasks]
@@ -143,7 +145,7 @@ def main() -> int:
     summary = summarize(summary_rows)
     if args.csv_output:
         write_csv(summary_rows, ROOT / args.csv_output)
-    print(json.dumps({"status": "PASS", "checkpoint": args.checkpoint or "base_model", "count": len(rows), "summary": summary}, ensure_ascii=False))
+    print(json.dumps({"status": "PASS", "checkpoint": args.checkpoint or "base_model", "suite": args.suite if not args.input else None, "inputs": [str(path) for path in paths], "count": len(rows), "summary": summary}, ensure_ascii=False))
     return 0
 
 

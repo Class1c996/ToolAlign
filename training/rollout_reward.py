@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 from typing import Any
 
 from envs import build_standard_environment, parse_action
 from rewards import calculate_reward
+from scripts.task_suite import load_tasks
 
 
 _TASK_CACHE: dict[str, dict[str, Any]] | None = None
@@ -16,13 +16,8 @@ _TASK_CACHE: dict[str, dict[str, Any]] | None = None
 def _load_tasks() -> dict[str, dict[str, Any]]:
     global _TASK_CACHE
     if _TASK_CACHE is None:
-        _TASK_CACHE = {}
-        root = Path(__file__).resolve().parents[1] / "data" / "processed"
-        for path in sorted(root.glob("*.jsonl")):
-            for line in path.read_text(encoding="utf-8").splitlines():
-                if line.strip():
-                    task = json.loads(line)
-                    _TASK_CACHE[task["task_id"]] = task
+        tasks, _ = load_tasks(suite="generated_core")
+        _TASK_CACHE = {task["task_id"]: task for task in tasks}
     return _TASK_CACHE
 
 
@@ -45,6 +40,7 @@ def _executable_rewards(
     prompts: list[str] | None = None,
     task_id: list[str] | None = None,
     seed: list[int] | None = None,
+    task_json: list[str] | None = None,
     **_: Any,
 ) -> list[float]:
     values = []
@@ -52,8 +48,11 @@ def _executable_rewards(
         text = _completion_text(completion)
         identifier = task_id[index] if task_id is not None and index < len(task_id) else f"grpo-{index}"
         episode_seed = seed[index] if seed is not None and index < len(seed) else 7
-        task = _load_tasks().get(identifier, {"task_id": identifier, "seed": episode_seed, "goal": {"kind": "no_tool", "answer_contains": "return"}})
-        episode, executor = build_standard_environment(identifier, episode_seed)
+        if task_json is not None and index < len(task_json):
+            task = json.loads(task_json[index])
+        else:
+            task = _load_tasks().get(identifier, {"task_id": identifier, "seed": episode_seed, "goal": {"kind": "no_tool", "answer_contains": "return"}})
+        episode, executor = build_standard_environment(identifier, episode_seed, task.get("state_override"))
         trace = []
         parsed = parse_action(text)
         if parsed.action == "error":
@@ -68,12 +67,12 @@ def _executable_rewards(
     return values
 
 
-def terminal_reward(completions: list[Any], prompts: list[str] | None = None, task_id: list[str] | None = None, seed: list[int] | None = None, **kwargs: Any) -> list[float]:
-    return _executable_rewards(completions, False, prompts, task_id, seed, **kwargs)
+def terminal_reward(completions: list[Any], prompts: list[str] | None = None, task_id: list[str] | None = None, seed: list[int] | None = None, task_json: list[str] | None = None, **kwargs: Any) -> list[float]:
+    return _executable_rewards(completions, False, prompts, task_id, seed, task_json, **kwargs)
 
 
-def shaped_reward(completions: list[Any], prompts: list[str] | None = None, task_id: list[str] | None = None, seed: list[int] | None = None, **kwargs: Any) -> list[float]:
-    return _executable_rewards(completions, True, prompts, task_id, seed, **kwargs)
+def shaped_reward(completions: list[Any], prompts: list[str] | None = None, task_id: list[str] | None = None, seed: list[int] | None = None, task_json: list[str] | None = None, **kwargs: Any) -> list[float]:
+    return _executable_rewards(completions, True, prompts, task_id, seed, task_json, **kwargs)
 
 
 # Backward-compatible name used by the interface validation script.

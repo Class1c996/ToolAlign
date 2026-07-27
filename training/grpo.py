@@ -38,7 +38,16 @@ def main() -> int:
     tokenizer = AutoTokenizer.from_pretrained(config.get("base_model", "models/Qwen3-1.7B"), local_files_only=True)
     _, manifest_executor = build_standard_environment()
     manifest = manifest_executor.registry.manifest()
-    dataset = dataset.map(lambda row: {"prompt": format_prompt(row, manifest, tokenizer), "task_id": row["task_id"], "seed": row["seed"]}, remove_columns=dataset.column_names, load_from_cache_file=False)
+    dataset = dataset.map(
+        lambda row: {
+            "prompt": format_prompt(row, manifest, tokenizer),
+            "task_id": row["task_id"],
+            "seed": row["seed"],
+            "task_json": json.dumps(row, ensure_ascii=False, sort_keys=True),
+        },
+        remove_columns=dataset.column_names,
+        load_from_cache_file=False,
+    )
     # A saved PEFT adapter is marked inference-only by default.  Load it with
     # is_trainable=True so GRPO can update the SFT adapter instead of producing
     # a loss tensor with no autograd graph.

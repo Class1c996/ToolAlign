@@ -15,14 +15,15 @@ PYTHON = sys.executable
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--count", type=int, default=1200)
+    parser.add_argument("--suite", default="public_smoke", help="Named deterministic suite to validate and replay.")
     args = parser.parse_args()
     commands = [
         ["scripts/build_env.py"],
         ["scripts/prepare_data.py", "--count", str(args.count)],
         ["scripts/validate_storage.py"],
         ["scripts/validate_training_interfaces.py"],
-        ["scripts/validate_tasks.py"],
-        ["scripts/run_rollout.py", "--policy", "gold"],
+        ["scripts/validate_tasks.py", "--suite", args.suite],
+        ["scripts/run_rollout.py", "--suite", args.suite, "--policy", "gold"],
         ["scripts/evaluate.py"],
         ["scripts/run_experiments.py"],
     ]
