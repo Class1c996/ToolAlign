@@ -11,17 +11,17 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from scripts.run_rollout import run_task  # noqa: E402
+from scripts.task_suite import load_tasks  # noqa: E402
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", default="data/processed")
+    parser.add_argument("--suite", default="public_smoke", help="Named suite in data/suites.json.")
+    parser.add_argument("--input", default="", help="Explicit JSONL path; mutually exclusive with --suite.")
     args = parser.parse_args()
-    rows = []
-    for path in sorted((ROOT / args.input).glob("*.jsonl")):
-        rows.extend(json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip())
+    rows, paths = load_tasks(suite=None if args.input else args.suite, input_path=args.input or None)
     failures = [task["task_id"] for task in rows if not run_task(task, "gold")["reward"]["success"]]
-    result = {"status": "PASS" if not failures else "FAIL", "count": len(rows), "successes": len(rows) - len(failures), "failures": failures[:20]}
+    result = {"status": "PASS" if not failures else "FAIL", "suite": args.suite if not args.input else None, "inputs": [str(path) for path in paths], "count": len(rows), "successes": len(rows) - len(failures), "failures": failures[:20]}
     print(json.dumps(result, ensure_ascii=False))
     return 0 if not failures else 1
 

@@ -1,47 +1,9 @@
+# Local Python/runtime state
 .venv/
 .downloads/
 __pycache__/
 *.py[cod]
 .pytest_cache/
-checkpoints/
-models/Qwen3-1.7B/
-models/**/*.safetensors
-models/**/*.bin
-models/**/*.pt
-models/**/*.pth
-reports/runs/
-reports/*.jsonl
-data/raw/
-data/processed/*
-!data/processed/test_seen.jsonl
-!data/processed/test_unseen.jsonl
-!data/processed/challenge_v1.jsonl
-!data/processed/challenge_critical_v2.jsonl
-!data/processed/challenge_state_v3.jsonl
-!data/processed/manifest.json
-logs/
-docs/*.md
-*.sqlite3
-*.db
-
-# Local environments and editor/OS state
-.env
-.env.*
-!.env.example
-.idea/
-.vscode/
-.DS_Store
-Thumbs.db
-
-# Credentials and private keys
-*.pem
-*.key
-*.p12
-*.pfx
-credentials*.json
-secrets*.json
-
-# Python and tooling caches
 .mypy_cache/
 .ruff_cache/
 .coverage
@@ -49,3 +11,40 @@ htmlcov/
 build/
 dist/
 *.egg-info/
+
+# Large local model and training artifacts (never publish)
+/models/Qwen3-1.7B/
+/checkpoints/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.sqlite3
+*.db
+
+# Generated runtime output. Keep only a compact canonical summary.
+/logs/
+/reports/*
+!/reports/generalization_summary.json
+/data/env_manifest.json
+/data/processed/*
+!/data/processed/manifest.json
+/docs/*
+!/docs/06-最终实验结论与复现.md
+!/docs/PUBLIC_RELEASE_CHECKLIST.md
+
+# Local tooling and secrets
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+secrets*.json

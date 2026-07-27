@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "description": "Explicit task suites used by validation, replay, and public reproduction.",
+  "suites": {
+    "public_examples": {
+      "description": "Eight committed task examples for schema and parser tests.",
+      "files": ["data/examples/public_smoke_8.jsonl"]
+    },
+    "public_smoke": {
+      "description": "Low-cost deterministic public verification after prepare_data.",
+      "files": ["data/processed/test_seen.jsonl"]
+    },
+    "generated_core": {
+      "description": "All 1,200 generated tasks; excludes training-only and challenge corpora.",
+      "files": [
+        "data/processed/train.jsonl",
+        "data/processed/dev.jsonl",
+        "data/processed/test_seen.jsonl",
+        "data/processed/test_unseen.jsonl"
+      ]
+    },
+    "challenge_v1": {
+      "description": "Executable exact-trace broad challenge; use evaluate_checkpoint for model metrics.",
+      "files": ["data/processed/challenge_v1.jsonl"]
+    },
+    "critical_wording_v2": {
+      "description": "Independent wording exact-trace holdout.",
+      "files": ["data/processed/challenge_critical_v2.jsonl"]
+    },
+    "state_value_v3": {
+      "description": "Independent state/value exact-trace holdout.",
+      "files": ["data/processed/challenge_state_v3.jsonl"]
+    },
+    "generalization_holdouts": {
+      "description": "Independent wording and state/value exact-trace holdouts.",
+      "files": [
+        "data/processed/challenge_critical_v2.jsonl",
+        "data/processed/challenge_state_v3.jsonl"
+      ]
+    }
+  }
+}
